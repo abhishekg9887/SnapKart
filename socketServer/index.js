@@ -10,11 +10,20 @@ app.use(express.json())
 const server=http.createServer(app)
 const port=process.env.PORT || 5000
 
-const io=new Server(server,{
-    cors:{
-        origin:process.env.NEXT_BASE_URL
-    }
-})
+// const io=new Server(server,{
+//     cors:{
+//         origin:process.env.NEXT_BASE_URL
+//     }
+// })
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "https://snap-kart-gamma.vercel.app"
+    ],
+    methods: ["GET", "POST"]
+  }
+});
+
 
 io.on("connection",(socket)=>{
 
